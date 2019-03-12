@@ -35,13 +35,14 @@ def show_toast(title, body, **kwargs):
         win32gui.Shell_NotifyIcon(
             win32gui.NIM_DELETE,
             (
-                test,
+                hwnd,
                 0
             )
         )
         # https://archive.is/g0jSW
         win32gui.PostQuitMessage(0)
 
+    # https://archive.is/j8iU1
     window_class.lpfnWndProc = {
         win32con.WM_DESTROY: on_destroy
     }
@@ -67,8 +68,8 @@ def show_toast(title, body, **kwargs):
         handle,
         None  # additional app data (we have none)
     )
-    test = window_handle
 
+    # http://archive.is/AK0B4
     win32gui.UpdateWindow(window_handle)
 
     try:
