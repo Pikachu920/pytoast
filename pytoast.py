@@ -47,7 +47,8 @@ def show_toast(title, body, **kwargs):
         win32con.WM_DESTROY: on_destroy
     }
 
-    handle = win32gui.GetModuleHandle(None)
+    # http://archive.is/rWKbr
+    module_handle = win32gui.GetModuleHandle(None)
 
     try:
         class_atom = win32gui.RegisterClass(window_class)
@@ -65,7 +66,7 @@ def show_toast(title, body, **kwargs):
         win32con.CW_USEDEFAULT,  # height
         0,  # parent window (0 = none)
         0,  # menu (0 = none)
-        handle,
+        module_handle,
         None  # additional app data (we have none)
     )
 
@@ -80,7 +81,7 @@ def show_toast(title, body, **kwargs):
     # https://archive.is/hDS2B
     try:
         icon_handle = win32gui.LoadImage(
-            handle,
+            module_handle,
             icon_path,
             win32gui.IMAGE_ICON,
             0,  # width, 0 = actual width
