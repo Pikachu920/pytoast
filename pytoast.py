@@ -72,7 +72,6 @@ def show_toast(title, body, **kwargs):
     win32gui.UpdateWindow(window_handle)
 
     try:
-        print(kwargs['icon'])
         icon_path = path.realpath(path.expanduser(kwargs['icon']))
     except KeyError:
         icon_path = pkg_resources.resource_filename('pytoast', 'data/default_icon.ico')
