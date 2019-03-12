@@ -43,9 +43,15 @@ def show_toast(title, body, **kwargs):
         win32gui.PostQuitMessage(0)
 
     # https://archive.is/j8iU1
-    window_class.lpfnWndProc = {
-        win32con.WM_DESTROY: on_destroy
-    }
+    try:
+        window_class.lpfnWndProc = {
+            win32con.WM_DESTROY: on_destroy,
+            **kwargs['message_map']
+        }
+    except KeyError:
+        window_class.lpfnWndProc = {
+            win32con.WM_DESTROY: on_destroy
+        }
 
     # http://archive.is/rWKbr
     module_handle = win32gui.GetModuleHandle(None)
