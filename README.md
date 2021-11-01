@@ -1,6 +1,6 @@
 # pytoast
 
-An easy to use Python API for Windows 10's Toast functionality.
+An easy to use Python API for Windows 10's Toast functionality. It can currently only show a default icon, title and basic content.
 
 Example:
 ```python
